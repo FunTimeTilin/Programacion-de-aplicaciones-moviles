@@ -1,32 +1,45 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject, Observable, of } from 'rxjs';
+import { map } from 'rxjs/operators';
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  
+  private isAuthenticatedSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
-  isLoggedIn = false;
-
-  login(user: any): Observable<boolean> {
-    // Aquí realizarías la lógica para autenticar al usuario
-    // Por ejemplo, hacer una petición a un servidor
-    // y validar las credenciales
-
-    // Simulación de login exitoso
-    this.isLoggedIn = true;
-    return of(true);
+  constructor() {
+    // Simula el estado de autenticación; aquí deberías verificar el estado real
+    const token = localStorage.getItem('authToken'); // O el método que uses para verificar autenticación
+    this.isAuthenticatedSubject.next(!!token);
   }
 
-  logout() {
-    // Aquí realizarías la lógica para cerrar sesión
-    this.isLoggedIn = false;
+  isAuthenticated(): Observable<boolean> {
+    return this.isAuthenticatedSubject.asObservable();
   }
 
-  isAuthenticated() {
-    return this.isLoggedIn;
+  login(user: { username: string; password: string }): Observable<boolean> {
+    // Lógica para el inicio de sesión, y actualización del estado de autenticación
+    // Ejemplo de simulación
+    if (user.username === 'user' && user.password === 'password') {
+      localStorage.setItem('authToken', 'dummy-token'); // Guarda el token de autenticación
+      this.isAuthenticatedSubject.next(true);
+      return of(true);
+    } else {
+      return of(false);
+    }
   }
-  
 
+  logout(): Observable<void> {
+    // Lógica para cerrar sesión
+    localStorage.removeItem('authToken'); // Elimina el token de autenticación
+    this.isAuthenticatedSubject.next(false);
+    return of(void 0);
+  }
+  register(user: { rut: string; name: string; email: string; password: string }): Observable<boolean> {
+    // Lógica para el registro, y actualización del estado de autenticación si es necesario
+    // Aquí solo simulamos un registro exitoso
+    console.log('Usuario registrado', user);
+    return of(true); // Cambia esto según la lógica real del registro
+  }
 }

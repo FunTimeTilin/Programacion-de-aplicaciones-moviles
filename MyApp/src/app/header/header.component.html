@@ -1,0 +1,9 @@
+<header class="app-header">
+  <nav>
+    <a routerLink="/" class="logo">Mi Aplicación</a>
+    <ul>
+      <li *ngIf="!isLoggedIn"><a routerLink="/login">Iniciar sesión</a></li>
+      <li *ngIf="isLoggedIn"><a (click)="logout()">Cerrar sesión</a></li>
+    </ul>
+  </nav>
+</header>

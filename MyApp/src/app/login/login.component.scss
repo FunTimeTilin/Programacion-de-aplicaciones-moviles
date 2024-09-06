@@ -44,3 +44,51 @@
     text-decoration: none;
     padding: 10px 20px;
   }
+
+  .input-container {
+    position: relative;
+    width: 100%;
+  
+    .form-control {
+      width: 100%;
+      padding-right: 40px; /* Espacio para el botón */
+    }
+  
+    .toggle-password {
+      position: absolute;
+      top: 50%;
+      right: 10px;
+      transform: translateY(-50%);
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      font-size: 1.2em;
+      color: #6c757d; /* Color del ícono */
+    }
+  
+    .toggle-password:focus {
+      outline: none;
+    }
+  
+    ion-icon {
+      pointer-events: none; /* Desactivar eventos del ícono */
+    }
+  }
+  .register-link {
+    margin-top: 15px;
+    text-align: center;
+  
+    p {
+      margin: 0;
+    }
+  
+    a {
+      color: #007bff;
+      text-decoration: none;
+    }
+  
+    a:hover {
+      text-decoration: underline;
+    }
+  }
+  

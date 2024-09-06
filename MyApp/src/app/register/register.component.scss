@@ -1,0 +1,99 @@
+.form-control {
+  width: 200px; /* Asegúrate de que los inputs tengan el mismo ancho */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+}
+
+.login-form {
+  text-align: center; /* Centra todo el contenido del formulario */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* Ocupa toda la altura de la viewport */
+}
+
+.form-group {
+  margin-bottom: 20px; /* Espacio entre cada grupo de label e input */
+}
+
+.btn {
+  margin: 10px; /* Margen en todos los lados para el espaciado */
+}
+
+.btn-primary {
+  /* Estilos para el botón primario */
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+}
+
+.btn-link {
+  /* Estilos para el enlace con apariencia de botón */
+  color: #007bff;
+  text-decoration: none;
+  padding: 10px 20px;
+}
+
+.btn-link:hover {
+  text-decoration: underline;
+}
+
+.input-container {
+  position: relative;
+  width: 100%; /* Asegúrate de que el contenedor ocupe todo el ancho disponible */
+
+  .form-control {
+    width: 100%; /* Asegúrate de que el input ocupe todo el ancho disponible */
+    padding-right: 40px; /* Espacio para el botón */
+  }
+
+  .toggle-password {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2em;
+    color: #6c757d; /* Color del ícono */
+  }
+
+  .toggle-password:focus {
+    outline: none;
+  }
+
+  ion-icon {
+    pointer-events: none; /* Desactivar eventos del ícono */
+  }
+}
+
+.register-link {
+  margin-top: 15px;
+  text-align: center;
+
+  p {
+    margin: 0;
+  }
+
+  a {
+    color: #007bff;
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+}

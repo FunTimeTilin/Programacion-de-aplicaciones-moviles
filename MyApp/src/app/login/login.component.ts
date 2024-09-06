@@ -8,15 +8,16 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
+  user = { username: '', password: '' };
+  showPassword = false;
 
-  user = {
-    username: '',
-    password: ''
-  };
+  togglePasswordVisibility(): void {
+    this.showPassword = !this.showPassword;
+  }
 
   constructor(private authService: AuthService, private router: Router) {}
 
-  onSubmit() {
+  onSubmit(): void {
     this.authService.login(this.user).subscribe(
       (res) => {
         if (res) {

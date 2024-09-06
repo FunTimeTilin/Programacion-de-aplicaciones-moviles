@@ -1,28 +1,5 @@
-<ion-app>
-  <ion-app>
-    <ion-menu contentId="main-content">
-      <ion-header>
-        <ion-toolbar>
-          <ion-title>Menu Content</ion-title>
-        </ion-toolbar>
-      </ion-header>
-      <ion-content class="ion-padding">
-        <ion-list>
-          <ion-item>
-            <ion-icon name="home-outline"></ion-icon>
-            <ion-label>Home</ion-label>
-            <ion-button><a href="./home/home.page.html">Home</a></ion-button>
-          </ion-item>
-          
-          <ion-item>
-            <ion-icon name="log-out-outline"></ion-icon>
-            <ion-label>Logout</ion-label>
-          </ion-item>
-          
-        </ion-list>
-      </ion-content>
-    </ion-menu>
-    <ion-router-outlet id="main-content"></ion-router-outlet>
-  </ion-app>
-  <ion-router-outlet></ion-router-outlet>
-</ion-app>
+<app-header></app-header>
+<ion-content>
+    <router-outlet></router-outlet>
+</ion-content>
+<app-footer></app-footer>
