@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -17,19 +18,13 @@ export class LoginComponent {
 
   constructor(private authService: AuthService, private router: Router) {}
 
-  onSubmit(): void {
-    this.authService.login(this.user).subscribe(
-      (res) => {
-        if (res) {
-          console.log('Login exitoso');
-          this.router.navigate(['/home']); // Redirigir a la página de inicio
-        } else {
-          console.log('Credenciales inválidas');
-        }
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
+  onSubmit(form: NgForm): void {
+    if (form.valid) {
+      // Lógica de autenticación aquí
+      console.log('Formulario válido. Enviando datos...');
+      this.router.navigate(['/home']);  // Redirigir al home si el login es exitoso
+    } else {
+      console.log('Formulario no válido');
+    }
   }
 }

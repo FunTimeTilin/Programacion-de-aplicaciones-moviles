@@ -3,6 +3,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 const routes: Routes = [
   {
@@ -27,6 +28,7 @@ const routes: Routes = [
     path: 'register', component: RegisterComponent,
     loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule)
   },
+  { path: 'reset-password', component: ResetPasswordComponent},
 ];
 
 @NgModule({
