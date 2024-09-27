@@ -1,0 +1,12 @@
+<header class="app-header">
+  <nav>
+    <a routerLink="/" class="logo">RegistrAPP</a>
+    <ul>
+      <li *ngIf="!isLoggedIn"><a routerLink="/login">Iniciar sesión</a></li>
+      <li *ngIf="isLoggedIn">
+        <span>Hola, {{ username }}</span>
+        <a (click)="logout()">Cerrar sesión</a>
+      </li>
+    </ul>
+  </nav>
+</header>
