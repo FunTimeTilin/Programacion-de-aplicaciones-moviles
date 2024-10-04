@@ -29,6 +29,15 @@ const routes: Routes = [
     loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule)
   },
   { path: 'reset-password', component: ResetPasswordComponent},
+  {
+    path: 'not-found',
+    loadChildren: () => import('./not-found/not-found.module').then( m => m.NotFoundPageModule)
+  },
+  
+  {  path: '**',
+    redirectTo: 'not-found'
+  }
+
 ];
 
 @NgModule({
