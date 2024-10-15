@@ -12,12 +12,14 @@ import { RegisterComponent } from './register/register.component';
 import { FooterComponent } from './footer/footer.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { AuthService } from './auth.service';
+import { SQLite } from '@ionic-native/sqlite/ngx';
+import { DatabaseService } from './database.service';
 
 
 @NgModule({
   declarations: [AppComponent, LoginComponent, HomeComponent, HeaderComponent, RegisterComponent, FooterComponent, ResetPasswordComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, FormsModule, RouterModule],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy,  }, AuthService],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy,  }, AuthService, SQLite],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
