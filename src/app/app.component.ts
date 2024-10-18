@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { Storage } from '@ionic/storage-angular';
 
 @Component({
   selector: 'app-root',
@@ -7,9 +8,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  constructor(private router: Router) {}
+  constructor(private storage: Storage) {
+    this.initializeApp();
+  }
 
-  goBack() {
-    this.router.navigate(['/']); // Redirige a la página de inicio o a la ruta deseada
+  async initializeApp() {
+    await this.storage.create(); // Crear el almacenamiento
   }
 }
