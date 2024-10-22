@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Storage } from '@ionic/storage-angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -9,9 +10,13 @@ import { Storage } from '@ionic/storage-angular';
 })
 export class RegisterPage implements OnInit {
   registerForm: FormGroup;
-  showPassword: boolean = false; // Propiedad para mostrar u ocultar la contraseña
+  showPassword: boolean = false;
 
-  constructor(private formBuilder: FormBuilder, private storage: Storage) {
+  constructor(
+    private formBuilder: FormBuilder, 
+    private storage: Storage, 
+    private router: Router 
+  ) {
     this.registerForm = this.formBuilder.group({
       fullName: ['', Validators.required],
       username: ['', Validators.required],
@@ -22,21 +27,30 @@ export class RegisterPage implements OnInit {
   }
 
   ngOnInit() {
-    // Inicializa el almacenamiento (necesario para usar Ionic Storage)
     this.storage.create();
   }
 
   register() {
-    // Aquí guardarías el usuario en la base de datos
     const userData = this.registerForm.value;
-    // Guardar en la base de datos
     this.storage.set(userData.username, userData).then(() => {
-      console.log('Usuario registrado:', userData);
-      // Redireccionar al login después de registrar
+        console.log('Usuario registrado:', userData);
+        this.router.navigate(['/login']);
+    }).catch(error => {
+        console.error('Error al guardar el usuario:', error);
+    });
+}
+
+
+  // Método para limpiar la base de datos
+  clearDatabase() {
+    this.storage.clear().then(() => {
+      console.log('Base de datos limpiada.');
+    }).catch(error => {
+      console.error('Error al limpiar la base de datos:', error);
     });
   }
 
   togglePassword() {
-    this.showPassword = !this.showPassword; // Alterna el estado de mostrar/ocultar contraseña
+    this.showPassword = !this.showPassword;
   }
 }

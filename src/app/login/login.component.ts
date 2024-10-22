@@ -1,30 +1,46 @@
 import { Component } from '@angular/core';
-import { AuthService } from '../auth.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { NgForm } from '@angular/forms';
+import { Storage } from '@ionic/storage-angular';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
-  user = { username: '', password: '' };
-  showPassword = false;
+  loginForm: FormGroup;
+  showPassword: boolean = false; // Asegúrate de que esta propiedad esté definida
 
-  togglePasswordVisibility(): void {
-    this.showPassword = !this.showPassword;
+  constructor(private formBuilder: FormBuilder, private router: Router, private storage: Storage) {
+    this.loginForm = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required]]
+    });
   }
 
-  constructor(private authService: AuthService, private router: Router) {}
+  login() {
+    const { username, password } = this.loginForm.value;
 
-  onSubmit(form: NgForm): void {
-    if (form.valid) {
-      // Lógica de autenticación aquí
-      console.log('Formulario válido. Enviando datos...');
-      this.router.navigate(['/home']);  // Redirigir al home si el login es exitoso
-    } else {
-      console.log('Formulario no válido');
-    }
+    // Recupera los datos del usuario
+    this.storage.get(username).then(userData => {
+        console.log('Datos recuperados:', userData);
+
+        if (userData && userData.password === password) {
+            console.log('Credenciales correctas');
+            // Redirige al dashboard
+            this.router.navigate(['/dashboard']);
+        } else {
+            console.error('Credenciales incorrectas');
+        }
+    }).catch(error => {
+        console.error('Error al recuperar los datos:', error);
+    });
+}
+
+  
+
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword; // Alternar la visibilidad de la contraseña
   }
 }
