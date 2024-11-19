@@ -1,0 +1,13 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Escanear QR</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="videoInputDevices.length > 0">
+    <video id="video" width="100%" height="auto" style="border: 1px solid black;" autoplay></video>
+  </div>
+  <ion-button expand="full" (click)="startScanning()" *ngIf="!scanning">Iniciar Escaneo</ion-button>
+  <ion-button expand="full" color="danger" (click)="stopScanning()" *ngIf="scanning">Detener Escaneo</ion-button>
+</ion-content>

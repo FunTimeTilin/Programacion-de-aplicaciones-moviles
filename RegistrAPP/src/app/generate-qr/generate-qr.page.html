@@ -1,0 +1,13 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Generar QR</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="qr-container">
+    <canvas #qrCanvas></canvas> <!-- El canvas donde se dibuja el QR -->
+  </div>
+
+  <ion-button expand="full" color="success" (click)="saveAttendance()">Guardar Asistencia</ion-button>
+</ion-content>
